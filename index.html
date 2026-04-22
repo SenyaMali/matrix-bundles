@@ -321,7 +321,7 @@
     }
 
     async function init() {
-      const cacheBust = `?t=${Date.now()}`;
+      const cacheBust = `&t=${Date.now()}`;
       try {
         const [bundles, products] = await Promise.all([
           CONFIG.USE_GOOGLE_SHEET ? fetchTSV(CONFIG.BUNDLES_SHEET + cacheBust, parseBundleRow) : Promise.resolve(CONFIG.FALLBACK_BUNDLES),
