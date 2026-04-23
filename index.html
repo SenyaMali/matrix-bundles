@@ -321,11 +321,11 @@
     }
 
     async function init() {
-      const cacheBust = `&t=${Date.now()}`;
+      
       try {
         const [bundles, products] = await Promise.all([
-          CONFIG.USE_GOOGLE_SHEET ? fetchTSV(CONFIG.BUNDLES_SHEET + cacheBust, parseBundleRow) : Promise.resolve(CONFIG.FALLBACK_BUNDLES),
-          CONFIG.USE_GOOGLE_SHEET ? fetchTSV(CONFIG.PRODUCTS_SHEET + cacheBust, parseProductRow) : Promise.resolve(CONFIG.FALLBACK_PRODUCTS)
+          CONFIG.USE_GOOGLE_SHEET ? fetchTSV(CONFIG.BUNDLES_SHEET, parseBundleRow) : Promise.resolve(CONFIG.FALLBACK_BUNDLES),
+          CONFIG.USE_GOOGLE_SHEET ? fetchTSV(CONFIG.PRODUCTS_SHEET, parseProductRow) : Promise.resolve(CONFIG.FALLBACK_PRODUCTS)
         ]);
         allBundles = bundles.length > 0 ? bundles : CONFIG.FALLBACK_BUNDLES;
         allProducts = products.length > 0 ? products : CONFIG.FALLBACK_PRODUCTS;
